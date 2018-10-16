@@ -32,18 +32,15 @@ class ContactViewController: UIViewController, UINavigationControllerDelegate, U
     
     @IBAction func createContact(_ sender: Any) {
         if contactImage.image == UIImage(named: "camera") {
-            print("Error no image!")
-            return
+            createAlert(message: "You must have a contact image!")
         }
         
         if contactDetails.text == "" {
-            print("Error no detail!")
-            return
+            createAlert(message: "You must add details for your contact!")
         }
         
         if contactName.text == "" {
-            print("Error no name!")
-            return
+            createAlert(message: "You must add a name for your contact!")
         }
         
         if updateContact == nil {
@@ -156,6 +153,14 @@ class ContactViewController: UIViewController, UINavigationControllerDelegate, U
             return false
         }
         return true
+    }
+    
+    func createAlert(message: String) {
+        let alert = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        
+        self.present(alert, animated: true)
     }
     /*
     // MARK: - Navigation
